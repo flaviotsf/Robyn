@@ -28,6 +28,10 @@ packageVersion("Robyn")
 # Also, if you're using an older version than the latest dev version, please check older demo.R with
 # https://github.com/facebookexperimental/Robyn/blob/vX.X.X/demo/demo.R
 
+Sys.setenv(RETICULATE_PYTHON = "~/Library/r-miniconda-arm64/envs/r-reticulate/bin/python")
+
+
+
 ## Force multi-core use when running RStudio
 Sys.setenv(R_FUTURE_FORK_ENABLE = "true")
 options(future.fork.enable = TRUE)

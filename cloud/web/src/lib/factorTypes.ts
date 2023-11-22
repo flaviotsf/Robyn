@@ -1,0 +1,63 @@
+export const FACTOR_TYPES = [
+  {
+    group: 'Brand equity',
+    items: [
+      { value: 'VALUE_PERCEPTION', label: 'Value perception' },
+      { value: 'NET_PROMOTER', label: 'Net promoter score ' },
+      { value: 'AD_RECALL', label: 'Ad recall' },
+      { value: 'AWARENESS', label: 'Awareness' },
+      { value: 'SATISFACTION', label: 'Satisfaction' },
+      { value: 'CONSIDERATION', label: 'Consideration' },
+      { value: 'MESSAGE_ASSOCIATION', label: 'Message association' },
+      { value: 'LOYALTY', label: 'Loyalty / repeat business' },
+    ],
+  },
+  {
+    group: 'Operations',
+    items: [
+      { value: 'WORKING_HOURS', label: 'Working hours' },
+      { value: 'CAPACITY', label: 'Capacity' },
+      { value: 'NUMBER_OF_STORES', label: 'Number of stores' },
+      { value: 'DELIVERY_RETURNS', label: 'Delivery & returns' },
+      { value: 'EASE_OF_CHECKOUT', label: 'Ease of checkout' },
+      { value: 'SATISFACTION', label: 'Satisfaction' },
+      { value: 'CATALOGUE', label: 'Catalogues' },
+      { value: 'SHOPIFY', label: 'Integrations - Shopify' },
+    ],
+  },
+  {
+    group: 'Marketing, promotion and PR',
+    items: [
+      { value: 'CRM', label: 'CRM / Messages' },
+      { value: 'PRICE_PROMO', label: 'Price promos' },
+      { value: 'DISCOUNT', label: 'Discounts' },
+      { value: 'CHATTER', label: 'Chatter' },
+      { value: 'TRADE_PRESS', label: 'Trade press' },
+    ],
+  },
+  {
+    group: 'Environmental, seasonal or competition',
+    items: [
+      { value: 'PANDEMIC', label: 'Pandemic' },
+      { value: 'GOVERNMENT CONSTRAINTS', label: 'Government constraints' },
+      { value: 'INFLATION', label: 'Inflation' },
+      { value: 'CPI', label: 'CPI' },
+      { value: 'RECESSION', label: 'Recession' },
+      { value: 'SEASONAL_WAVES', label: 'Seasonal waves' },
+      { value: 'EXTRA_HOLIDAYS', label: 'Extra holidays' },
+      { value: 'COMPETITIVE_MARKETING', label: 'Competitive marketing' },
+      { value: 'COMPETITIVE_EQUITY', label: 'Competitive equity' },
+      { value: 'WEATHER_TEMPERATURE', label: 'Weather - temperature' },
+      { value: 'WEATHER_RAINFALL', label: 'Weather - rainfall' },
+      { value: 'WEATHER_SNOW', label: 'Weather - snow' },
+      { value: 'WEATHER_SUNNY_DAYS', label: 'Weather - sunny days' },
+      { value: 'WEATHER_OTHER', label: 'Weather - other' },
+      { value: 'SOCIAL_UNREST', label: 'Social unrest / war' },
+      { value: 'EXTREME_WEATHER_EVENTS', label: 'Extreme weather events' },
+    ],
+  },
+  {
+    group: 'Miscellaneous',
+    items: [{ value: 'MISC_OTHER', label: 'Other - please specify' }],
+  },
+];

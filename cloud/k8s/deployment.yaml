@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: robyn-app-deployment
+  labels:
+    app: robyn-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: robyn-app
+  template:
+    metadata:
+      labels:
+        app: robyn-app
+    spec:
+      containers:
+      - name: robyn-web
+        image: us-central1-docker.pkg.dev/f51-robyn-hackathon/robyn/robyn-web
+        env:
+          - name: DATABASE_URL
+            value: "file:/app/robyn-data/db/prod.db"
+          - name: JWT_SECRET
+            value: "RobynMMM" # Should come from a secret
+          - name: PYTHON_PATH
+            value: "/root/.local/share/r-miniconda/envs/r-reticulate/bin/python"
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "500Mi"
+          limits:
+            cpu: "2"
+            memory: "2Gi"
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 3000
+        volumeMounts:
+        - name: robyn-volume
+          mountPath: "/app/robyn-data"
+        volumes:
+        - name: robyn-volume
+          persistentVolumeClaim:
+            claimName: robyn-pvc
