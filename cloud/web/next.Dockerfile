@@ -1,4 +1,4 @@
-FROM flaviosf310/robyn-base:latest as base
+FROM robyn-base as base
 
 # Update the package list and install necessary dependencies
 RUN apt-get update && apt-get install -y curl software-properties-common
@@ -23,12 +23,13 @@ COPY package*.json ./
 # Install dependencies
 RUN npm install
 
-# Copy the rest of your app's source code from your host to your image filesystem.
-COPY . .
-
 # Build the Next.js app
 RUN npx prisma generate
 RUN npx next telemetry disable
+
+# Copy the rest of your app's source code from your host to your image filesystem.
+COPY . .
+
 RUN npm run build
 
 # Expose the port the app runs on

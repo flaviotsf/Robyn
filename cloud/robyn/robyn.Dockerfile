@@ -1,4 +1,4 @@
-FROM rocker/r2u
+FROM rocker/r2u:22.04
 RUN install.r rjson reticulate
 COPY R/deps/py ./R/deps/py
 RUN Rscript ./R/deps/py/install-reticulate.R
