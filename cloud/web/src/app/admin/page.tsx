@@ -7,6 +7,8 @@ import prisma from '@/db/db';
 import { Plus } from 'lucide-react';
 import Link from 'next/link';
 
+export const dynamic = 'force-dynamic';
+
 async function getData() {
   const data = cookies().get('session')?.value ?? '';
   const decodedToken = jwt.decode(data) as { id: number };
