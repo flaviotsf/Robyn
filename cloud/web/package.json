@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "NODE_OPTIONS=\"--max-old-space-size=4096\" && next build",
     "start": "next start",
     "start:migrate:prod": "prisma migrate deploy && npm run start",
     "lint": "next lint",
@@ -40,7 +40,7 @@
     "jsonwebtoken": "^9.0.2",
     "lodash": "^4.17.21",
     "lucide-react": "^0.292.0",
-    "next": "^14.0.3",
+    "next": "^14.0.4-canary.28",
     "next-client-cookies": "^1.1.0",
     "postcss": "8.4.31",
     "prettier": "^3.1.0",

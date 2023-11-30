@@ -1,9 +1,32 @@
+# Stage 1: Building the code
+FROM node:latest AS builder
+
+WORKDIR /app
+
+RUN npm install -g pnpm
+
+# Copy package.json
+COPY package.json ./
+COPY pnpm-lock.yaml ./
+
+# Install dependencies
+RUN pnpm install
+
+# Build the Next.js app
+RUN pnpx prisma generate
+RUN pnpx next telemetry disable
+
+# Copy the rest of your app's source code from your host to your image filesystem.
+COPY . .
+
+RUN pnpm run build
+
 FROM robyn-base as base
 
 # Update the package list and install necessary dependencies
 RUN apt-get update && apt-get install -y curl software-properties-common
 
-ARG NODE_VERSION=20
+ARG NODE_VERSION=18
 # install NodeJS
 RUN apt-get update -yq \
     && apt-get install -yq ca-certificates curl gnupg \
@@ -17,23 +40,14 @@ RUN apt-get update -yq \
 # Set the working directory
 WORKDIR /app
 
-# Copy package.json
-COPY package*.json ./
-
-# Install dependencies
-RUN npm install
-
-# Build the Next.js app
-RUN npx prisma generate
-RUN npx next telemetry disable
-
-# Copy the rest of your app's source code from your host to your image filesystem.
-COPY . .
-
-RUN npm run build
+# Copy the build output to the new working directory
+COPY --from=builder /app/next.config.js ./
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/node_modules ./node_modules
 
 # Expose the port the app runs on
 EXPOSE 3000
 
 # Start the application
-CMD ["npm",  "run", "start:migrate:prod"]
+CMD ["pnpm",  "run", "start:migrate:prod"]
