@@ -28,6 +28,7 @@ COPY . .
 
 # Build the Next.js app
 RUN npx prisma generate
+RUN npx next telemetry disable
 RUN npm run build
 
 # Expose the port the app runs on
