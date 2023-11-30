@@ -8,6 +8,5 @@ docker-compose*
 README.md
 LICENSE
 .vscode
-robyn-data/output/
-robyn-data/uploads/
+robyn-data/
 prisma/*.db
