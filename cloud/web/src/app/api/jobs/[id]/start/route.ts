@@ -90,7 +90,7 @@ export async function POST(
       },
     });
 
-    const runnerPath = join(process.cwd(), `/robyn-data/runner/robyn-runner.R`);
+    const runnerPath = join(process.cwd(), `/runner/robyn-runner.R`);
     const outDirectory = join(
       process.cwd(),
       `/robyn-data/output/${userID}/${job.id}`

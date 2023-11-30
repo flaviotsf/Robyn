@@ -45,10 +45,14 @@ export const columns: ColumnDef<DataTableSource>[] = [
   },
   {
     accessorKey: 'state',
-    header: 'Status',
+    header: 'State',
     cell: ({ cell }) => {
       if (cell.getValue() === 'DRAFT') {
-        return <Badge variant="outline">Draft</Badge>;
+        return (
+          <Badge variant="outline" className="justify-end">
+            Draft
+          </Badge>
+        );
       }
 
       if (cell.getValue() === 'COMPLETED') {
@@ -78,6 +82,7 @@ export const columns: ColumnDef<DataTableSource>[] = [
   {
     accessorKey: 'createdAt',
     header: 'Created Date',
+
     cell: ({ cell }) => {
       const date = cell.getValue() as Date;
       return date.toLocaleDateString('en-US', {
@@ -89,40 +94,42 @@ export const columns: ColumnDef<DataTableSource>[] = [
     },
   },
   {
-    header: 'Actions',
+    id: 'actions',
+    header: () => {
+      return <div className="text-right">Actions</div>;
+    },
     cell: ({ row }) => {
       const state = row.getValue('state');
       const id = row.getValue('id');
-      if (state === 'DRAFT') {
-        return (
-          <Button variant="outline" asChild>
-            <Link href={`/admin/create/${id}/settings`}>
-              <Settings size={14} className="mr-1" />
-              Settings
-            </Link>
-          </Button>
-        );
-      }
-      if (state === 'FAILED') {
-        return (
-          <Button variant="outline" asChild>
-            <Link href={`/admin/create/${id}/progress`}>
-              <Settings size={14} className="mr-1" />
-              Settings
-            </Link>
-          </Button>
-        );
-      }
-      if (state === 'COMPLETED') {
-        return (
-          <Button variant="outline" asChild>
-            <Link href={`/admin/jobs/${id}`}>
-              <LayoutTemplate size={14} className="mr-1" />
-              View Report
-            </Link>
-          </Button>
-        );
-      }
+
+      return (
+        <div className="text-right">
+          {state === 'DRAFT' && (
+            <Button variant="outline" asChild>
+              <Link href={`/admin/create/${id}/settings`}>
+                <Settings size={14} className="mr-1" />
+                Settings
+              </Link>
+            </Button>
+          )}
+          {state === 'FAILED' && (
+            <Button variant="outline" asChild>
+              <Link href={`/admin/create/${id}/progress`}>
+                <Settings size={14} className="mr-1" />
+                Settings
+              </Link>
+            </Button>
+          )}
+          {state === 'COMPLETED' && (
+            <Button variant="outline" asChild>
+              <Link href={`/admin/jobs/${id}`}>
+                <LayoutTemplate size={14} className="mr-1" />
+                View Report
+              </Link>
+            </Button>
+          )}
+        </div>
+      );
     },
   },
 ];

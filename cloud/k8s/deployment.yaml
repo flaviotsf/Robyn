@@ -26,8 +26,8 @@ spec:
             value: "/root/.local/share/r-miniconda/envs/r-reticulate/bin/python"
         resources:
           requests:
-            cpu: "100m"
-            memory: "500Mi"
+            cpu: "1"
+            memory: "1Gi"
           limits:
             cpu: "2"
             memory: "2Gi"
@@ -37,7 +37,7 @@ spec:
         volumeMounts:
         - name: robyn-volume
           mountPath: "/app/robyn-data"
-        volumes:
-        - name: robyn-volume
-          persistentVolumeClaim:
-            claimName: robyn-pvc
+      volumes:
+      - name: robyn-volume
+        persistentVolumeClaim:
+          claimName: robyn-pvc

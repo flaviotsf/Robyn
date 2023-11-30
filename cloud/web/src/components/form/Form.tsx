@@ -47,8 +47,6 @@ export default function Form({ type }: Props) {
       })
       .catch(() => {
         setErrorMessage('An unexpected error has occured.');
-      })
-      .finally(() => {
         setLoading(false);
       });
   };

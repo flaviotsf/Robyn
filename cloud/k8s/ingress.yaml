@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: robyn-app-ingress
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: "web-ip"
+    cert-manager.io/cluster-issuer: letsencrypt-production
+    # Example of NGINX Ingress Controller specific annotations
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    # Annotations for SSL redirection, CORS, etc., can be added here
+spec:
+  tls:
+    # TLS configuration (for HTTPS)
+  - hosts:
+    - "robyn.f51.dev"
+    secretName: robyn-app-cert-secret
+  rules:
+  - host: "robyn.f51.dev"
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: robyn-app-service
+            port:
+              number: 8080
